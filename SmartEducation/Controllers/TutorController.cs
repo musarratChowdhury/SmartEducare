@@ -25,7 +25,8 @@ namespace SmartEducation.Controllers
             var newTutor = new Tutor
             {
                 Name = tutorDto.Name,
-                StartDate = tutorDto.StartDate
+                StartDate = tutorDto.StartDate,
+                Mobile = tutorDto.Mobile
             };
             _tutorService.AddTutor(newTutor);
             return  RedirectToAction("Index");
