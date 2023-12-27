@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SmartEducation.Models.DTOs;
 using SmartEducation.Models.Entities;
 using SmartEducation.Services;
@@ -8,19 +9,24 @@ namespace SmartEducation.Controllers
     public class DayController :  Controller
     {
         private readonly IDayService _dayService;
+        private readonly ITutorService _tutorService;
 
-        public DayController(IDayService dayService)
+        public DayController(IDayService dayService, ITutorService tutorService)
         {
             _dayService = dayService;
+            _tutorService = tutorService;
         }
 
         public ActionResult Index()
         {
-            return View();
+            var allDays  = _dayService.GetAllDays().ToList();
+            return View(allDays);
         }
 
         public ActionResult Create()
         {
+            var tutors = _tutorService.GetAllTutors();
+            ViewBag.Tutors = new SelectList(tutors, "Id", "Name");
             return View();
         }
 

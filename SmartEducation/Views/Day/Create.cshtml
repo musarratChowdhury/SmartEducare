@@ -5,7 +5,7 @@
 <form asp-controller="Day" asp-action="Create" method="post">
     <div class="form-group">
         <label asp-for="Date"></label>
-        <input asp-for="Date" type="date" class="form-control" />
+        <input asp-for="Date" type="date" class="form-control"/>
         <span asp-validation-for="Date" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -15,12 +15,16 @@
     </div>
     <div class="form-group">
         <label asp-for="TutorId"></label>
-        <input asp-for="TutorId" type="number" class="form-control" />
+        <select asp-for="TutorId" asp-items="ViewBag.Tutors" class="form-control"></select>
         <span asp-validation-for="TutorId" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial"/>
+    <script>
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('Date').value = today;
+    </script>
 }

@@ -1,1 +1,38 @@
-﻿
+﻿@model List<SmartEducation.Models.Entities.Day>
+@section Styles{
+    <link rel="stylesheet" href="~/css/Day/day.css"/>
+}
+<h1>Topics</h1>
+<a asp-action="Create" asp-controller="Day">Add Day</a>
+
+
+<div class="table-container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>No.</th>
+            <th>Date</th>
+            <th>StudyTopics</th>
+            <th>Tutor Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var topic in Model)
+        {
+            <tr>
+                <td>@topic.Id</td>
+                <td>@topic.Date</td>
+                  <td>@topic.StudyTopics</td>
+                @if (topic.Tutor != null)
+                {
+                    <td>@topic.Tutor.Name</td>
+                }
+                else
+                {
+                    <td>No Tutor</td>
+                }
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

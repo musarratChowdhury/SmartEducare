@@ -10,15 +10,24 @@ namespace SmartEducation.Services
     public class DayService : IDayService
     {
         private readonly IGenericRepository<Day> _dayRepository;
+        private readonly IGenericRepository<Tutor> _tutorRepository;
 
-        public DayService(IGenericRepository<Day> dayRepository)
+        public DayService(IGenericRepository<Day> dayRepository, IGenericRepository<Tutor> tutorRepository)
         {
             _dayRepository = dayRepository;
+            _tutorRepository = tutorRepository;
         }
 
         public IEnumerable<Day> GetAllDays()
         {
-            return _dayRepository.GetAll();
+            var allDays = _dayRepository.GetAll();
+            var enumerable = allDays.ToList();
+            foreach (var day in enumerable)
+            {
+                day.Tutor = _tutorRepository.GetById(day.TutorId);
+            }
+
+            return enumerable;
         }
 
         public Day GetDayById(int id)
