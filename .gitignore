@@ -1,0 +1,29 @@
+# ASP.NET Core #
+################
+
+# Build results
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.sln.docstates
+
+# Rider files
+.idea/
+
+# NuGet packages
+*.nuget.props
+*.lock
+*.paket.restore.log
+packages/
+
+# User-specific files
+*.DS_Store
+Thumbs.db
+
+# Other tools and frameworks
+node_modules/
+bower_components/

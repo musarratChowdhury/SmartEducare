@@ -1,0 +1,67 @@
+﻿@model List<SmartEducation.Models.Entities.Topic>
+@section Styles{
+	<link rel="stylesheet" href="~/css/Topic/topic.css"/>
+}
+<h1>Topics</h1>
+<a asp-action="Create" asp-controller="Topic">Create Topic</a>
+<br />
+<a asp-action="Index" asp-controller="Book">Add a new book</a>
+<br />
+<a asp-action="Index" asp-controller="Subject">Add a New subject</a>
+
+
+<div class="table-container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Entry Date</th>
+					<th>Last Revised</th>
+					<th>Chapter</th>
+					<th>Page</th>
+					<th>Status</th>
+					<th>Difficulty</th>
+					<th>Book</th>
+					<th>Subject</th>
+					<!-- Add more columns as needed -->
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var topic in Model)
+				{
+					<tr>
+						<td>@topic.Id</td>
+						<td>@topic.Title</td>
+						<td>@topic.Description</td>
+						<td>@topic.EntryDate</td>
+						<td>@topic.LastRevised</td>
+						<td>@topic.Chapter</td>
+						<td>@topic.Page</td>
+						<td>@topic.Status</td>
+						<td>@topic.Difficulty</td>
+						@if (topic.Book != null)
+						{
+							<td>@topic.Book.Title</td>
+						}
+						else
+						{
+							<td>No Book</td>
+						}
+						@if (topic.Subject != null)
+						{
+							<td>@topic.Subject.Name</td>
+						}
+						else
+						{
+							<td>No Subject</td>
+						}
+						<!-- Add more columns as needed -->
+					</tr>
+				}
+			</tbody>
+		</table>
+</div>
+
+

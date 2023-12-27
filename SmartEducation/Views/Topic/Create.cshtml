@@ -1,0 +1,59 @@
+﻿@model SmartEducation.Models.DTOs.TopicDto
+
+<h1>Create Topic</h1>
+
+<form asp-action="Create" method="post">
+	<div class="form-group">
+		<label asp-for="Title"></label>
+		<input asp-for="Title" class="form-control" />
+		<span asp-validation-for="Title" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Description"></label>
+		<input asp-for="Description" class="form-control" />
+		<span asp-validation-for="Description" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Chapter"></label>
+		<input asp-for="Chapter" class="form-control" />
+		<span asp-validation-for="Chapter" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Page"></label>
+		<input asp-for="Page" class="form-control" />
+		<span asp-validation-for="Page" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Status"></label>
+		<select asp-for="Status" class="form-control">
+			@foreach (var value in Enum.GetValues(typeof(SmartEducation.Models.Enums.MemoryStatus)))
+			{
+				<option value="@value">@value</option>
+			}
+		</select>
+		<span asp-validation-for="Status" class="text-danger"></span>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Difficulty"></label>
+		<select asp-for="Difficulty" class="form-control">
+			@foreach (var value in Enum.GetValues(typeof(SmartEducation.Models.Enums.DifficultyLevel)))
+			{
+				<option value="@value">@value</option>
+			}
+		</select>
+		<span asp-validation-for="Difficulty" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="BookId"></label>
+		<select asp-for="BookId" asp-items="ViewBag.Books" class="form-control"></select>
+		<span asp-validation-for="BookId" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="SubjectId"></label>
+		<select asp-for="SubjectId" asp-items="ViewBag.Subjects" class="form-control"></select>
+		<span asp-validation-for="SubjectId" class="text-danger"></span>
+	</div>
+	<!-- Add more input fields as needed -->
+	<button type="submit" class="btn btn-primary">Save</button>
+</form>
