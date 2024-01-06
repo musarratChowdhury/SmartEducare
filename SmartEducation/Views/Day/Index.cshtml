@@ -1,4 +1,8 @@
-﻿@model List<SmartEducation.Models.Entities.Day>
+﻿@{
+    int counter = 1;
+}
+
+@model List<SmartEducation.Models.Entities.Day>
 @section Styles{
     <link rel="stylesheet" href="~/css/Day/day.css"/>
 }
@@ -20,9 +24,9 @@
         @foreach (var topic in Model)
         {
             <tr>
-                <td>@topic.Id</td>
-                <td>@topic.Date</td>
-                  <td>@topic.StudyTopics</td>
+                <td>@counter</td>
+                <td>@topic.Date.ToString("d MMM, yyyy")</td>
+                <td>@topic.StudyTopics</td>
                 @if (topic.Tutor != null)
                 {
                     <td>@topic.Tutor.Name</td>
@@ -32,6 +36,7 @@
                     <td>No Tutor</td>
                 }
             </tr>
+            counter++;
         }
         </tbody>
     </table>
